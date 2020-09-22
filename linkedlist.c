@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
-// Creating a node
-struct ListNode {
-    int value;
-    struct ListNode *next;
-};
-
 // print the linked list value
 void PrintLinkedList(struct ListNode *p) {
     struct ListNode *iterate;
@@ -79,4 +73,16 @@ void PopEnd(struct ListNode *p) {
     }
     free(p->next);
     p->next = NULL;
+}
+
+int Get(struct ListNode *p, int location) {
+	struct ListNode *list = p;
+	int i;
+    for(i = 0; i <= location; i++) {
+		if(list->next != NULL)
+			list = list->next;
+		else 
+			return (int)NULL;
+	}
+	return list->value;
 }
