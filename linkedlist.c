@@ -1,43 +1,94 @@
-struct node {    
-	int value;
-    struct node * next;
+#include <stdio.h>
+#include <stdlib.h>
+
+// Creating a node
+struct ListNode {
+    int value;
+    struct ListNode *next;
 };
 
-void PrintLinkedList(struct node *p) {
-	int c = 0;
-    while (p != NULL) {
-        printf("#%d %d\n", c, p->value);
-        p = p->next;
-		c++;
-    }
+// print the linked list value
+void PrintLinkedList(struct ListNode *p) {
+    struct ListNode *iterate;
+    iterate = malloc(sizeof(struct ListNode));
+    iterate = p ;
+    do {
+        printf("%d ", iterate->value);
+        iterate = iterate->next;
+    } while (iterate != NULL) ;
+    free(iterate);
+    printf("\n");
 }
-void Append(struct node *p, int value) {
+
+void Append(struct ListNode *p, int value) {
     while (p->next != NULL) {
         p = p->next;
     }
-    struct node *addNode = NULL;
-    addNode = malloc(sizeof(struct node));
+    struct ListNode *addNode;
+    addNode = malloc(sizeof(struct ListNode));
     addNode->value = value;
-    p->next = addNode;  
+    addNode->next = NULL; 
+    p->next = addNode;
 }
 
-void Prepend(struct node *p, int value) {
-    struct node *addNode = NULL;
-    addNode = malloc(sizeof(struct node));
+void Prepend(struct ListNode *p, int value) {
+    struct ListNode *addNode = NULL;
+    addNode = malloc(sizeof(struct ListNode));
     addNode->value = p->value;
     addNode->next = p->next;
     p->value = value;
     p->next = addNode;
 }
 
-void Remove(struct node *p, int location) {
-	struct node *list = p;
-    for(int i = 0; i <= location; i++) {
-        if(i == location-1) {
-			if(list != NULL) 
-				list->next = list->next->next;
-		}
-		list = list->next;
+int GetSize(struct ListNode *p) {
+    int count = 0;
+    struct ListNode *iterate = p;
+    iterate = malloc(sizeof(struct ListNode));
+    while (iterate != NULL) {
+        count += 1; 
+        iterate = iterate->next;
     }
+    free(iterate);
+    return count;
+}
 
+void Remove(struct ListNode *p, int index) {
+    for(int i = 0; i <= index - 1; i++) {
+        p = p->next;
+    }
+    if (p->next == NULL){
+        free(p);
+        return;
+    }
+    if(p != NULL) {
+        p->next = p->next->next;
+        return;
+    }
+}
+
+void PopFirst(struct ListNode *p) {
+    free(p->next);
+    p->value = p->next->value;
+    p->next = p->next->next;
+}
+
+void PopEnd(struct ListNode *p) {
+    while (p->next->next != NULL) {
+        p = p->next;
+    }
+    free(p->next);
+    p->next = NULL;
+}
+
+int main() {
+    // Initialize nodes
+    struct ListNode *head = NULL;
+    head = malloc(sizeof(struct ListNode));
+    head->value = 1;
+    Append(head, 2);
+    Append(head, 3);
+    PrintLinkedList(head);
+    Remove(head, 1);
+    PrintLinkedList(head);
+    // printf("%d\n", GetSize(head));
 }
