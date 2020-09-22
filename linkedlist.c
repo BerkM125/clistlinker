@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linkedlist.h"
 
 // Creating a node
 struct ListNode {
@@ -78,17 +79,4 @@ void PopEnd(struct ListNode *p) {
     }
     free(p->next);
     p->next = NULL;
-}
-
-int main() {
-    // Initialize nodes
-    struct ListNode *head = NULL;
-    head = malloc(sizeof(struct ListNode));
-    head->value = 1;
-    Append(head, 2);
-    Append(head, 3);
-    PrintLinkedList(head);
-    Remove(head, 1);
-    PrintLinkedList(head);
-    // printf("%d\n", GetSize(head));
 }
