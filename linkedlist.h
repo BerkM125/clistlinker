@@ -1,9 +1,9 @@
-struct node {    
-	int value;
-    struct node * next;
+struct ListNode {    
+    int value;
+    struct ListNode * next;
 };
 
-void PrintLinkedList(struct node *p);
-void Prepend(struct node *p, int value);
-void Append(struct node *p, int value);
-void Remove(struct node *p, int location);
+void PrintLinkedList(struct ListNode *p);
+void Prepend(struct ListNode *p, int value);
+void Append(struct ListNode *p, int value);
+void Remove(struct ListNode *p, int location);
