@@ -95,3 +95,13 @@ void ToArray(struct ListNode *p, int *array) {
         p = p->next;
     }
 }
+
+int Equal(struct ListNode *l1, struct ListNode *l2) {
+    if (GetSize(l1) != GetSize(l2))
+        return -1;
+    for (int i = 0; i < GetSize(l1); i++) {
+        if (Get(l1, i) != Get(l2, i)) 
+            return -1;
+    }
+    return 1;
+}

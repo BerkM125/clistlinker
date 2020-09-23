@@ -12,8 +12,5 @@ int main() {
 	Append(head, 4);
 	Append(head, 5);
 	Append(head, 6);
-	PrintLinkedList(head);
-	Remove(head, 0);
-	PrintLinkedList(head);
 	return 0;
 }

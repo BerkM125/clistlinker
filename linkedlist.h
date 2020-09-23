@@ -16,5 +16,6 @@ int GetSize(struct ListNode *p);
 void PopFirst(struct ListNode *p);
 void PopEnd(struct ListNode *p);
 void Remove(struct ListNode *p, int index);
+int Equal(struct ListNode *l1, struct ListNode *l2);
 
 #endif
