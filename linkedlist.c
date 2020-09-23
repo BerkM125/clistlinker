@@ -45,7 +45,11 @@ int GetSize(struct ListNode *p) {
 }
 
 void Remove(struct ListNode *p, int index) {
-    for(int i = 0; i <= index - 1; i++) {
+    if (index == 0) {
+        PopFirst(p);
+        return;
+    }
+    for(int i = 0; i <= index - 2; i++) {
         p = p->next;
     }
     if (p->next == NULL){
@@ -59,7 +63,8 @@ void Remove(struct ListNode *p, int index) {
 }
 
 void PopFirst(struct ListNode *p) {
-    free(p->next);
+    if (p == NULL)
+        return;
     p->value = p->next->value;
     p->next = p->next->next;
 }

@@ -13,5 +13,8 @@ void Remove(struct ListNode *p, int location);
 int Get(struct ListNode *p, int location);
 void ToArray(struct ListNode *p, int *array);
 int GetSize(struct ListNode *p);
+void PopFirst(struct ListNode *p);
+void PopEnd(struct ListNode *p);
+void Remove(struct ListNode *p, int index);
 
 #endif

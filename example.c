@@ -8,8 +8,12 @@ int main() {
 	head->value = 1;
 	Prepend(head, 0);
 	Append(head, 2);
+	Append(head, 3);
+	Append(head, 4);
+	Append(head, 5);
+	Append(head, 6);
 	PrintLinkedList(head);
-	int returnArr[GetSize(head)];
-	ToArray(head, returnArr);
+	Remove(head, 0);
+	PrintLinkedList(head);
 	return 0;
 }
