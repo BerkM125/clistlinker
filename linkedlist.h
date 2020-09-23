@@ -19,6 +19,6 @@ void Remove(struct ListNode *p, int index);
 int Equal(struct ListNode *l1, struct ListNode *l2);
 int TraverseList(struct ListNode *head, int value);
 struct ListNode *ToLinkedList(int arr[], int sz);
-void MultiAppend(struct ListNode *p, int values[]);
+void MultiAppend(struct ListNode *p, int *values);
 
 #endif

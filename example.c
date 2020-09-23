@@ -7,10 +7,13 @@ int main() {
 	head = malloc(sizeof(struct ListNode));
 	head->value = 1;
 	Prepend(head, 0);
-	Append(head, 2);
-	Append(head, 3);
-	Append(head, 4);
-	Append(head, 5);
-	Append(head, 6);
+	int param [] = {2, 3, 4, 5, 6, 7, 9};
+	MultiAppend(head, param);
+	PrintLinkedList(head);
+	// Append(head, 2);
+	// Append(head, 3);
+	// Append(head, 4);
+	// Append(head, 5);
+	// Append(head, 6);
 	return 0;
 }

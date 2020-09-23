@@ -25,8 +25,8 @@ void Append(struct ListNode *p, int value) {
     p->next = addNode;
 }
 
-void MultiAppend(struct ListNode *p, int values[]) {
-    for (int i = 0; i < (sizeof(values)/sizeof(values[0])) - 1; i++) {
+void MultiAppend(struct ListNode *p, int *values) {
+    for (int i = 0; i < sizeof(values) - 1; i++) {
         Append(p, values[i]);
     }
 }
@@ -102,7 +102,7 @@ int Get(struct ListNode *p, int location) {
 		if(list->next != NULL)
 			list = list->next;
 		else 
-			return (int)NULL;
+			return -1;
 	}
 	return list->value;
 }
