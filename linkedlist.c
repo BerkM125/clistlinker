@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
-// print the linked list value
 void PrintLinkedList(struct ListNode *p) {
     struct ListNode *iterate;
     iterate = malloc(sizeof(struct ListNode));
-    iterate = p ;
+    iterate = p;
     do {
         printf("%d ", iterate->value);
         iterate = iterate->next;
@@ -37,19 +36,18 @@ void Prepend(struct ListNode *p, int value) {
 
 int GetSize(struct ListNode *p) {
     int count = 0;
-    while (p != NULL) {
+    struct ListNode *iterate = p;
+    iterate = malloc(sizeof(struct ListNode));
+    while (iterate != NULL) {
         count += 1; 
-        p = p->next;
+        iterate = iterate->next;
     }
+    free(iterate);
     return count;
 }
 
 void Remove(struct ListNode *p, int index) {
-    if (index == 0) {
-        PopFirst(p);
-        return;
-    }
-    for(int i = 0; i <= index - 2; i++) {
+    for(int i = 0; i <= index - 1; i++) {
         p = p->next;
     }
     if (p->next == NULL){
@@ -63,8 +61,7 @@ void Remove(struct ListNode *p, int index) {
 }
 
 void PopFirst(struct ListNode *p) {
-    if (p == NULL)
-        return;
+    free(p->next);
     p->value = p->next->value;
     p->next = p->next->next;
 }
@@ -77,6 +74,16 @@ void PopEnd(struct ListNode *p) {
     p->next = NULL;
 }
 
+struct ListNode *ArrToList (int arr[], int sz) {
+	int index = 0;
+	struct ListNode *list = NULL;
+	list = malloc(sizeof(struct ListNode));
+	for(index = 0; index < sz; index++)
+		Append(list, arr[index]);
+	return (list);
+}
+
+
 int Get(struct ListNode *p, int location) {
 	struct ListNode *list = p;
 	int i;
@@ -84,24 +91,21 @@ int Get(struct ListNode *p, int location) {
 		if(list->next != NULL)
 			list = list->next;
 		else 
-			return -1;
+			return (int)NULL;
 	}
 	return list->value;
 }
 
-void ToArray(struct ListNode *p, int *array) {
-    for (int i = 0; i < GetSize(p); i++) {
-        array[i] = p->value;
-        p = p->next;
-    }
-}
-
-int Equal(struct ListNode *l1, struct ListNode *l2) {
-    if (GetSize(l1) != GetSize(l2))
-        return -1;
-    for (int i = 0; i < GetSize(l1); i++) {
-        if (Get(l1, i) != Get(l2, i)) 
-            return -1;
-    }
-    return 1;
+int traverseList(struct ListNode *head, int value)
+{
+	struct ListNode *n;
+	int spot = 0;
+	n = head;
+	while (n != 0 && n->value != value) {
+		n = n->next;
+		spot++;
+	}
+	if (n == 0)
+		return -1;
+	return spot;
 }
