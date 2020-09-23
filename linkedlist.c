@@ -85,7 +85,6 @@ int Get(struct ListNode *p, int location) {
 }
 
 void ToArray(struct ListNode *p, int *array) {
-    // int returnArr[GetSize(p)];   
     for (int i = 0; i < GetSize(p); i++) {
         array[i] = p->value;
         p = p->next;
