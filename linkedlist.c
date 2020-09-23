@@ -47,7 +47,11 @@ int GetSize(struct ListNode *p) {
 }
 
 void Remove(struct ListNode *p, int index) {
-    for(int i = 0; i <= index - 1; i++) {
+    if (index == 0) {
+        PopFirst(p);
+        return;
+    }
+    for(int i = 0; i <= index - 2; i++) {
         p = p->next;
     }
     if (p->next == NULL){
@@ -61,7 +65,8 @@ void Remove(struct ListNode *p, int index) {
 }
 
 void PopFirst(struct ListNode *p) {
-    free(p->next);
+    if (p == NULL)
+        return;
     p->value = p->next->value;
     p->next = p->next->next;
 }
@@ -96,6 +101,13 @@ int Get(struct ListNode *p, int location) {
 	return list->value;
 }
 
+void ToArray(struct ListNode *p, int *array) {
+    for (int i = 0; i < GetSize(p); i++) {
+        array[i] = p->value;
+        p = p->next;
+    }
+}
+
 int traverseList(struct ListNode *head, int value)
 {
 	struct ListNode *n;
@@ -108,4 +120,14 @@ int traverseList(struct ListNode *head, int value)
 	if (n == 0)
 		return -1;
 	return spot;
+}
+
+int Equal(struct ListNode *l1, struct ListNode *l2) {
+    if (GetSize(l1) != GetSize(l2))
+        return -1;
+    for (int i = 0; i < GetSize(l1); i++) {
+        if (Get(l1, i) != Get(l2, i)) 
+            return -1;
+    }
+    return 1;
 }
