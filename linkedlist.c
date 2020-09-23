@@ -25,6 +25,12 @@ void Append(struct ListNode *p, int value) {
     p->next = addNode;
 }
 
+void MultiAppend(struct ListNode *p, int values[]) {
+    for (int i = 0; i < (sizeof(values)/sizeof(values[0])) - 1; i++) {
+        Append(p, values[i]);
+    }
+}
+
 void Prepend(struct ListNode *p, int value) {
     struct ListNode *addNode = NULL;
     addNode = malloc(sizeof(struct ListNode));
@@ -108,8 +114,7 @@ void ToArray(struct ListNode *p, int *array) {
     }
 }
 
-int TraverseList(struct ListNode *head, int value)
-{
+int TraverseList(struct ListNode *head, int value) {
 	struct ListNode *n;
 	int spot = 0;
 	n = head;
