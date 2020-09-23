@@ -17,5 +17,7 @@ void PopFirst(struct ListNode *p);
 void PopEnd(struct ListNode *p);
 void Remove(struct ListNode *p, int index);
 int Equal(struct ListNode *l1, struct ListNode *l2);
+int traverseList(struct ListNode *head, int value);
+struct ListNode *ArrToList(int arr[], int sz);
 
 #endif
