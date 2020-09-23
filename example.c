@@ -9,5 +9,7 @@ int main() {
 	Prepend(head, 0);
 	Append(head, 2);
 	PrintLinkedList(head);
+	int returnArr[GetSize(head)];
+	ToArray(head, returnArr);
 	return 0;
 }

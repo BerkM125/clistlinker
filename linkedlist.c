@@ -37,13 +37,10 @@ void Prepend(struct ListNode *p, int value) {
 
 int GetSize(struct ListNode *p) {
     int count = 0;
-    struct ListNode *iterate = p;
-    iterate = malloc(sizeof(struct ListNode));
-    while (iterate != NULL) {
+    while (p != NULL) {
         count += 1; 
-        iterate = iterate->next;
+        p = p->next;
     }
-    free(iterate);
     return count;
 }
 
@@ -85,4 +82,12 @@ int Get(struct ListNode *p, int location) {
 			return -1;
 	}
 	return list->value;
+}
+
+void ToArray(struct ListNode *p, int *array) {
+    // int returnArr[GetSize(p)];   
+    for (int i = 0; i < GetSize(p); i++) {
+        array[i] = p->value;
+        p = p->next;
+    }
 }
