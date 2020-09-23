@@ -82,7 +82,7 @@ int Get(struct ListNode *p, int location) {
 		if(list->next != NULL)
 			list = list->next;
 		else 
-			return (int)NULL;
+			return -1;
 	}
 	return list->value;
 }
