@@ -79,7 +79,7 @@ void PopEnd(struct ListNode *p) {
     p->next = NULL;
 }
 
-struct ListNode *ArrToList (int arr[], int sz) {
+struct ListNode *ToLinkedList (int arr[], int sz) {
 	int index = 0;
 	struct ListNode *list = NULL;
 	list = malloc(sizeof(struct ListNode));
@@ -108,7 +108,7 @@ void ToArray(struct ListNode *p, int *array) {
     }
 }
 
-int traverseList(struct ListNode *head, int value)
+int TraverseList(struct ListNode *head, int value)
 {
 	struct ListNode *n;
 	int spot = 0;
