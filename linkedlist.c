@@ -136,3 +136,17 @@ int Equal(struct ListNode *l1, struct ListNode *l2) {
     }
     return 1;
 }
+
+void Reverse(struct ListNode **head) {
+    struct ListNode* prev = NULL; // = malloc(sizeof(struct ListNode));
+    struct ListNode* current = *head;
+    struct ListNode* next = NULL; // = malloc(sizeof(struct ListNode));
+    while (current != NULL) {
+        printf("Looping...\n");
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    *head = prev;
+}

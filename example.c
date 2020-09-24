@@ -7,8 +7,9 @@ int main() {
 	head = malloc(sizeof(struct ListNode));
 	head->value = 1;
 	Prepend(head, 0);
-	int param [] = {2, 3, 4, 5, 6, 7, 9};
+	int param [] = {2, 3, 4, 5, 6, 7, 8};
 	MultiAppend(head, param);
+	// Reverse(&head);
 	PrintLinkedList(head);
 	// Append(head, 2);
 	// Append(head, 3);
