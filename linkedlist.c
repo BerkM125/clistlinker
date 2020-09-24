@@ -43,6 +43,7 @@ void Prepend(struct ListNode *p, int value) {
 int GetSize(struct ListNode *p) {
     int count = 0;
     struct ListNode *iterate = p;
+    iterate = malloc(sizeof(struct ListNode));
     while (iterate != NULL) {
         count += 1; 
         iterate = iterate->next;
@@ -84,7 +85,7 @@ void PopEnd(struct ListNode *p) {
     p->next = NULL;
 }
 
-struct ListNode *ToLinkedList (int *arr, int sz) {
+struct ListNode *ArrToList (int arr[], int sz) {
 	int index = 0;
 	struct ListNode *list = NULL;
 	list = malloc(sizeof(struct ListNode));
@@ -93,14 +94,17 @@ struct ListNode *ToLinkedList (int *arr, int sz) {
 	return list;
 }
 
+
 int Get(struct ListNode *p, int location) {
-    for(int i = 1; i <= location; i++) {
-		if(p->next != NULL)
-			p = p->next;
+	struct ListNode *list = p;
+	int i;
+    for(i = 0; i < location-1; i++) {
+		if(list->next != NULL)
+			list = list->next;
 		else 
-			return -1;
+			return (int)NULL;
 	}
-	return p->value;
+	return list->value;
 }
 
 void ToArray(struct ListNode *p, int *array) {
