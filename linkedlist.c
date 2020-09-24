@@ -94,15 +94,14 @@ struct ListNode *ToLinkedList (int arr[], int sz) {
 	return (list);
 }
 
-
 int Get(struct ListNode *p, int location) {
 	struct ListNode *list = p;
 	int i;
-    for(i = 0; i <= location; i++) {
+    for(i = 1; i <= location; i++) {
 		if(list->next != NULL)
 			list = list->next;
 		else 
-			return -1;
+			return (int)NULL;
 	}
 	return list->value;
 }
