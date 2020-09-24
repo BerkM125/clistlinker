@@ -17,9 +17,10 @@ void PopFirst(struct ListNode *p);
 void PopEnd(struct ListNode *p);
 void Remove(struct ListNode *p, int index);
 int Equal(struct ListNode *l1, struct ListNode *l2);
-int TraverseList(struct ListNode *head, int value);
-struct ListNode *ToLinkedList(int arr[], int sz);
-void MultiAppend(struct ListNode *p, int *values);
+struct ListNode *ToLinkedList(int *arr, int sz);
+int FindNumber(struct ListNode *head, int value);
+void MultiAppend(struct ListNode *p, int *values, int size);
 void Reverse(struct ListNode **head);
+struct ListNode *SimilarElements(struct ListNode *head1, struct ListNode *head2);
 
 #endif

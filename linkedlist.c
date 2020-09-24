@@ -25,8 +25,8 @@ void Append(struct ListNode *p, int value) {
     p->next = addNode;
 }
 
-void MultiAppend(struct ListNode *p, int *values) {
-    for (int i = 0; i < sizeof(values) - 1; i++) {
+void MultiAppend(struct ListNode *p, int *values, int size) {
+    for (int i = 0; i < size - 1; i++) {
         Append(p, values[i]);
     }
 }
@@ -84,13 +84,13 @@ void PopEnd(struct ListNode *p) {
     p->next = NULL;
 }
 
-struct ListNode *ToLinkedList (int arr[], int sz) {
+struct ListNode *ToLinkedList (int *arr, int sz) {
 	int index = 0;
 	struct ListNode *list = NULL;
 	list = malloc(sizeof(struct ListNode));
-	for(index = 0; index < sz; index++)
+	for(index = 0; index < sz - 1; index++)
 		Append(list, arr[index]);
-	return (list);
+	return list;
 }
 
 int Get(struct ListNode *p, int location) {
@@ -104,13 +104,14 @@ int Get(struct ListNode *p, int location) {
 }
 
 void ToArray(struct ListNode *p, int *array) {
-    for (int i = 0; i < GetSize(p); i++) {
+    int size = GetSize(p);
+    for (int i = 0; i < size; i++) {
         array[i] = p->value;
         p = p->next;
     }
 }
 
-int TraverseList(struct ListNode *head, int value) {
+int FindNumber(struct ListNode *head, int value) {
 	struct ListNode *n;
 	int spot = 0;
 	n = head;
@@ -126,10 +127,9 @@ int TraverseList(struct ListNode *head, int value) {
 int Equal(struct ListNode *l1, struct ListNode *l2) {
     if (GetSize(l1) != GetSize(l2))
         return -1;
-    for (int i = 0; i < GetSize(l1); i++) {
+    for (int i = 0; i < GetSize(l1); i++)
         if (Get(l1, i) != Get(l2, i)) 
             return -1;
-    }
     return 1;
 }
 
@@ -138,11 +138,59 @@ void Reverse(struct ListNode **head) {
     struct ListNode* current = *head;
     struct ListNode* next = NULL; // = malloc(sizeof(struct ListNode));
     while (current != NULL) {
-        printf("Looping...\n");
         next = current->next;
         current->next = prev;
         prev = current;
         current = next;
     }
     *head = prev;
+}
+
+void RemoveCopies(struct ListNode *p) {
+    struct ListNode *ptr1, *ptr2, *dup;
+    ptr1 = p;
+    while (ptr1 != NULL && ptr1 ->next != NULL) {
+        ptr2 = ptr1;
+        while (ptr2->next != NULL) {
+            if (ptr1->value == ptr2->next->value) {
+                dup = ptr2->next;
+                ptr2->next = ptr2->next->next;
+                free(dup);
+            }
+            else
+                ptr2 = ptr2->next;
+        }
+        ptr1 = ptr1->next;
+    }
+}
+
+struct ListNode *SimilarElements(struct ListNode *head1, struct ListNode *head2) {
+    struct ListNode* similar = malloc(sizeof(struct ListNode));
+    struct ListNode* iterate = NULL;
+    struct ListNode* iterate2 = NULL;
+    struct ListNode* reference = NULL;
+    if (GetSize(head1) > GetSize(head2) || GetSize(head1) == GetSize(head2)) {
+        iterate = head1;
+        reference = head2;
+        iterate2 = head2;
+    } else {
+        iterate = head2;
+        reference = head1;
+        iterate2 = head1;
+    }
+    while (iterate != NULL) {
+        iterate2 = reference;
+        while (iterate2 != NULL) {
+            if (iterate->value == iterate2->value) {
+                Append(similar, iterate->value);
+            }
+            iterate2 = iterate2->next;
+        }
+        iterate = iterate->next;
+    }
+    RemoveCopies(similar);
+    free(iterate);
+    free(iterate2);
+    free(reference);
+    return similar;
 }

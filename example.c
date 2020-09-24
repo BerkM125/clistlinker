@@ -6,15 +6,15 @@ int main() {
 	struct ListNode *head;
 	head = malloc(sizeof(struct ListNode));
 	head->value = 0;
-	Append(head, 1);
-	Append(head, 2);
-	Append(head, 3);
-	printf("%d\n", Get(head, 1));
-	int array[GetSize(head)];
-	// printf("%d\n", GetSize(head));
-	// ToArray(head, array);
-	// for (int i = 0; i < GetSize(head); i++) {
-	// 	printf("%d ", array[i]);
-	// }
+	struct ListNode *head1;
+	head1 = malloc(sizeof(struct ListNode));
+	head1->value = 0;
+	int array[] = {1, 2, 3, 4, 12};
+	int array1[] = {1, 9, 10, 11, 12};
+	MultiAppend(head, array, (sizeof array / sizeof *array));
+	MultiAppend(head1, array1, (sizeof array1 / sizeof *array1));
+	struct ListNode *similar;
+	similar = SimilarElements(head, head1);
+	PrintLinkedList(similar);
 	return 0;
 }
